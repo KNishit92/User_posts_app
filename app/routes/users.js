@@ -3,11 +3,12 @@ const router = require('express').Router();
 
 // CRUD for posts by users
 router
-    .get('/posts', controller.getAll) // all posts by all the users
-    .get('users/:id/posts/:id', controller.getOne) // specific post by a specific user
-    .get('/users/:id/posts', controller.getAll) // get all posts by a user
-    .post('/users/:id/posts', controller.createOne)
-    .patch('/users/:id/posts/:id', controller.patch)
-    .delete('/users/:id/posts/:id', controller.deleteOne)
-    .delete('/users/:id/posts', controller.delete) // delete all posts by a user 
+    // .post('/users', controller.createUser) // create a new user
+    .get('/posts', controller.getAllPosts) // all posts by all the users
+    // .get('users/:id/posts/:id', controller.getPost) // specific post by a specific user
+    // .get('/users/:id/posts', controller.getAllPosts) // get all posts by a user
+    // .post('/users/:id/posts', controller.createPost)
+    // .patch('/users/:id/posts/:id', controller.updatePost)
+    // .delete('/users/:id/posts/:id', controller.deletePost)
+    // .delete('/users/:id/posts', controller.deleteAllPostsByUser) // delete all posts by a user 
 

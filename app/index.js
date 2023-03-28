@@ -1,4 +1,7 @@
 const express = require("express")
+
+const sequelize = require('./utils/database');
+const User = require('./models/models');
 const app = express();
 
 app.use(express.json());
@@ -11,9 +14,16 @@ app.use((req, res, next) => {
 })
 
 app.use('/routes', require('./routes/routes'));
+app.use('/users', require('./routes/users'))
 
-try {
-    app.listen(process.env.EXTERNAL_PORT || 3000);
-} catch (err) {
-    console.log("Error starting server: " + err.message);
-}
+// create table before touching the end points
+(async () => {
+    try {
+        await sequelize.sync(
+            { force: true }
+        );
+        app.listen(process.env.EXTERNAL_PORT || 3000);
+    } catch (err) {
+        console.log("Error starting server: " + err.message);
+    }
+})()
